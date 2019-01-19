@@ -1,0 +1,45 @@
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let item of this.items; i as index" (click)="getItemDetail(item)">  
+            <td >{{item.Number}}</td>
+            <td *ngIf="uSelect[i]">false</td>
+            <td *ngIf="!uSelect[i]">{{item.Name}}</td>  
+            <td *ngIf="uSelect[i]"></td>
+            <td *ngIf="!uSelect[i]">{{item.Price}}</td>  
+            <td *ngIf="uSelect[i]"></td>
+            <td *ngIf="!uSelect[i]">{{item.Quantity}} </td>
+                    <td *ngIf="uSelect[i]"></td>
+                <!--<button class="btn" (click)="incrementQuantityByOne($event); false"  >increment</button>
+                <button class="btn" (click)="decrementQuantityByOne($event); false" >decrement</button>
+                    -->
+            
+            <td>
+                <button class="btn" (click)="updateItem($event); false" >Update</button>
+            </td>
+            <td>
+                <button class="btn" (click)="deleteItem($event,i); false" >Delete</button>
+            </td>
+            
+        </tr>  
+    </tbody>
+  </table>
+
+
+  <br>
+  <br>
+
+  <button class="btn" routerLink="/additem" >
+Add Item
+  </button>

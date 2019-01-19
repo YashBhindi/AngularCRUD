@@ -1,0 +1,24 @@
+
+<!----
+<ul class="nav nav-pills">
+    <li [class.active]="viewMode == 'list'"><a (click)="viewMode='list'">Home</a></li>
+    <li [class.active]="viewMode == 'signIn'"><a (click)="viewMode='signIn'">Sign In</a></li>
+    <li [class.active]="viewMode == 'signUp'"><a (click)="viewMode='signUp'">Sign Up</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+
+    <div *ngSwitchCase="'list'"><item-list></item-list></div>
+    <div *ngSwitchCase="'signIn'">Sign In</div>
+    <div *ngSwitchCase="'signUp'">
+        <sign-up></sign-up>
+    </div>
+
+</div>
+-->
+<nav class="nav nav-pills">
+    <a routerLink="/itemlist" routerLinkActive="active">Home </a>
+    <a routerLink="/myprofile" routerLinkActive="active">Profile </a>
+    <a routerLink="/signup" routerLinkActive="active"> Sign Up</a>
+</nav>
+<router-outlet></router-outlet>
