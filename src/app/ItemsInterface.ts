@@ -1,6 +1,6 @@
 export interface ItemsInterface{
-    Number : Number,
+    Number : number,
     Name : string ,
-    Price : Number, 
-    Quantity : Number 
+    Price : number, 
+    Quantity : number 
 } 

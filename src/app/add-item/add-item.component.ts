@@ -1,6 +1,7 @@
 import { ItemsInterface } from './../ItemsInterface';
 import { ItemListServicesService } from './../item-list-services.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Router } from '@angular/router';
 
@@ -11,25 +12,50 @@ import { Router } from '@angular/router';
 })
 export class AddItemComponent implements OnInit {
   obj : {};
-  Number : Number;
-  Quantity : Number;
-  Price : Number;
+  Num : number;
+  Quantity : number;
+  Price : number;
   Name : string;
-  constructor(private itemListServicesService: ItemListServicesService,private router : Router) { }
+  itemNumber : number;
+  private item : ItemsInterface;
+  flag : boolean=false;
+  //flag1 : boolean=true;
+
+  constructor(private itemListServicesService: ItemListServicesService,private router : Router,private route : ActivatedRoute) { }
   ngOnInit() {
+    this.flag=false;
+    this.itemNumber=parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("flag"+this.flag+"item number"+this.itemNumber);
+      if(!isNaN(this.itemNumber)){
+        console.log("flag"+this.flag+"item number"+this.itemNumber);
+
+        this.loadData();
+        this.flag=true;
+        //this.flag1=false;
+      }
+  }
+  loadData(){
+    this.item=this.itemListServicesService.getItemDetails(this.itemNumber);
+     
+      this.Num = this.item.Number,
+      this.Name = this.item.Name,
+      this.Price = this.item.Price, 
+      this.Quantity = this.item.Quantity ;
+    
   }
 
-  addItem(){
-      
-      console.log(this.Name);
-      console.log(this.Number);
-      this.obj ={ Number : this.Number,
+  addItem(){  
+      this.obj ={ Num : this.Num,
                   Name : this.Name,
                   Price : this.Price, 
                   Quantity : this.Quantity };
-      console.log(this.obj); 
+      
       this.itemListServicesService.addItemToList(this.obj);
       this.router.navigateByUrl('itemlist');
   }
 
+  updateItem(){
+      this.itemListServicesService.updateItem(this.obj);
+      this.router.navigateByUrl('itemlist');
+  }
 }

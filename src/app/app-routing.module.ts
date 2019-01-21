@@ -15,6 +15,7 @@ const routes: Routes = [
   {path : 'itemlist', component : ItemListComponent},
   {path : 'additem', component : AddItemComponent},
   {path : 'signup', component : SignUpComponent},
+ {path : 'itemlist/update/:id' , component : AddItemComponent},
   {path : 'itemlist/:id' , component : ItemDetailComponentComponent},
   {path : 'myprofile' , component : MyProfileComponent},
 

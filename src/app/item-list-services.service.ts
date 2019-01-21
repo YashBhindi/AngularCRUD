@@ -17,6 +17,13 @@ export class ItemListServicesService {
       ];
     constructor(private http : HttpClient,private router : Router) { }
 
+    getItemNumber(item) : number{
+      return item.Number;
+    }
+
+    getItemIndex(item) : number{
+      return item.Number;
+    }
     getItems() : Observable<ItemsInterface[]>{
       // return this.http.get<ItemsInterface[]>(this._url);
       return of (this.items);
@@ -31,8 +38,17 @@ export class ItemListServicesService {
        // this.router.navigate(['itemlist']);
     }
 
-    deleteItem(index){
+    deleteItem(item){
+        
+        let index = this.items.findIndex(x=>x.Name === item.Name);
         this.items.splice(index,1);
+        
     }
 
+    updateItem(item){
+      let index = this.items.findIndex(x=>x.Name === item.Name);
+      this.items.splice(index,1,item);
+    }
+
+    
 }
