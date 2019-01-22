@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
     this.itemNumber=parseInt(this.route.snapshot.paramMap.get('id'));
     console.log("flag"+this.flag+"item number"+this.itemNumber);
       if(!isNaN(this.itemNumber)){
-        console.log("flag"+this.flag+"item number"+this.itemNumber);
+//        console.log("flag"+this.flag+"item number"+this.itemNumber);
 
         this.loadData();
         this.flag=true;
@@ -45,7 +45,7 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem(){  
-      this.obj ={ Num : this.Num,
+      this.obj ={ Number : this.Num,
                   Name : this.Name,
                   Price : this.Price, 
                   Quantity : this.Quantity };
@@ -55,6 +55,11 @@ export class AddItemComponent implements OnInit {
   }
 
   updateItem(){
+    this.obj ={ Number : this.Num,
+      Name : this.Name,
+      Price : this.Price, 
+      Quantity : this.Quantity };
+    console.log(this.obj);
       this.itemListServicesService.updateItem(this.obj);
       this.router.navigateByUrl('itemlist');
   }

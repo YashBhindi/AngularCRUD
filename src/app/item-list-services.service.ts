@@ -46,7 +46,8 @@ export class ItemListServicesService {
     }
 
     updateItem(item){
-      let index = this.items.findIndex(x=>x.Name === item.Name);
+     let index = this.items.findIndex(x=>x.Name == item.Name);
+      console.log(item.Name)
       this.items.splice(index,1,item);
     }
 
