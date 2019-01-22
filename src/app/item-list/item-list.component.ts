@@ -46,10 +46,12 @@ export class ItemListComponent implements OnInit {
   decrementQuantityByOne($event){
     $event.stopPropagation()
   }
-
+  model($event){
+    $event.stopPropagation()
+  }
   deleteItem($event ,item){
     $event.stopPropagation();
-
+    document.getElementById("openModalButton").click();
     this.itemListServicesService.deleteItem(item);
   }
   updateItem($event,item){

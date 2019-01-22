@@ -21,13 +21,13 @@ export class SignUpComponent implements OnInit {
       lastName : ['' , [Validators.required , furbiddenNameValidator(/ /)]],
       gender : ['' , Validators.required],
       postion : ['' , Validators.required],
-      mobile : ['',[Validators.required,Validators.pattern(/[1-9][0-9]{5}/)]],
+      mobile : ['',[Validators.required,Validators.pattern('^[1-9][0-9]{5}$')]],
       emailId : [''],
       password : ['',Validators.required],
       confirmPwd : ['' , Validators.required],
       address : this.fb.group({
         cityName : ['' ],
-        pinCode : ['',[Validators.required,Validators.pattern(/[1-9][0-9]{5}/)]]
+        pinCode : ['',[Validators.required,Validators.pattern('^[1-9][0-9]{5}$')]]
       }),
       subscribe : [false],
       alternativeMobile : this.fb.array([])
@@ -37,7 +37,10 @@ export class SignUpComponent implements OnInit {
       .subscribe( checkedValue => {
         const email = this.registrationForm.get('emailId');
         if(checkedValue){
-          email.setValidators(Validators.required);
+          console.log("if")
+          email.setValidators([Validators.required , Validators.pattern('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')]);
+        //  email.setValidators ();
+          
         }  
         else{
           email.clearValidators();

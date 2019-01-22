@@ -60,7 +60,10 @@
       <div class="form-group">
         <label for="email">Email address:</label>
         <input type="email" id="email" formControlName="emailId" class="form-control" >
-        <small  *ngIf="f.get('emailId').errors?.required" class="text-danger">Email is reqired</small>
+        <div *ngIf="f.get('emailId').invalid && f.get('emailId').touched">
+            <small  *ngIf="f.get('emailId').errors?.required" class="text-danger">Email is reqired</small>
+            <small *ngIf="f.get('emailId').errors?.pattern" class="text-danger">Enter valid Email</small> 
+          </div>
       </div>
       <div  class="form-group">
         <label for="pwd">Password:</label>
