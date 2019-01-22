@@ -10,33 +10,34 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div class="container-fluid">
 <div class="container">
-  <form class="form-horizontal">
+
+  <form #itemForm="ngForm" class="form-horizontal">
       <div class="form-group">
           <label class="control-label col-sm-2" for="nu">Number:</label>
           
-            <label *ngIf="flag==true" class="control-label col-sm-2" >{{Num}}</label>
-            <input *ngIf="flag==false" type="number" [(ngModel)]="Num" class="form-control" id="nu" 
-                  placeholder="Enter Item Number" name="Num6">
+            <label *ngIf="flag==true" class="control-label col-sm-2" >{{item.itemNumber}}</label>
+            <input *ngIf="!flag" type="number" name="nu" id="nu" [(ngModel)]="item.itemNumber" class="form-control" 
+                 required #num="ngModel" [class.is-invalid]="num.invalid && num.touched" placeholder="Enter Item Number" >
       </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="Name">Item Name:</label>
       <div class="col-sm-10">
-        <input type="text" [(ngModel)]="Name" class="form-control" id="Name" placeholder="Enter Item Name" name="Name" >
+        <input type="text" [(ngModel)]="item.name" class="form-control" id="Name" placeholder="Enter Item Name" name="Name" >
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="qu">Quantity:</label>
       <div class="col-sm-10">          
-        <input type="number" [(ngModel)]="Quantity" class="form-control" id="qu" 
+        <input type="number" [(ngModel)]="item.quantity" class="form-control" id="qu" 
               placeholder="Enter Quantity" name="qu">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pr">Price:</label>
       <div class="col-sm-10">          
-        <input type="number" [(ngModel)]="Price" class="form-control" id="pr" 
+        <input type="number" [(ngModel)]="item.price" class="form-control" id="pr" 
               placeholder="Enter Price" name="pr">
       </div>
     </div>
@@ -44,13 +45,13 @@
       
       <div *ngIf="flag==true" class="col-sm-offset-2 col-sm-10">
           <button  class="btn btn-default" (click)="updateItem()">Update</button>
-        </div> 
-        <div *ngIf="flag==false" class="col-sm-offset-2 col-sm-10">
+      </div> 
+      <div *ngIf="flag==false" class="col-sm-offset-2 col-sm-10">
             <button  class="btn btn-default" (click)="addItem()">Submit</button>
-        </div>
+      </div>
     </div>
   </form>
 </div>
-
+</div>
 </body>
 </html>

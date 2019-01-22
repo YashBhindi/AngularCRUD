@@ -5,20 +5,20 @@
 <table class="table table-hover">
     <thead>
       <tr>
-        <th (click)="sort('Number')"scope="col">#
-                <span class="glyphicon sort-icon" *ngIf="key =='Number'" 
+        <th (click)="sort('itemNumber')"scope="col">#
+                <span class="glyphicon sort-icon" *ngIf="key =='itemNumber'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
-        <th (click)="sort('Name')" scope="col">Name
-                <span class="glyphicon sort-icon" *ngIf="key =='Name'" 
+        <th (click)="sort('name')" scope="col">Name
+                <span class="glyphicon sort-icon" *ngIf="key =='name'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
-        <th (click)="sort('Price')" scope="col">Price
-                <span class="glyphicon sort-icon" *ngIf="key =='Price'" 
+        <th (click)="sort('price')" scope="col">Price
+                <span class="glyphicon sort-icon" *ngIf="key =='price'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
-        <th (click)="sort('Quantity')" scope="col">Quantity
-                <span class="glyphicon sort-icon" *ngIf="key =='Quantity'" 
+        <th (click)="sort('quantity')" scope="col">Quantity
+                <span class="glyphicon sort-icon" *ngIf="key =='quantity'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
         <th scope="col">Update</th>
@@ -30,12 +30,12 @@
         
         <tr  *ngFor="let item of this.items |orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 2, currentPage: p }; let i = index" 
         (click)="getItemDetail(item)">  
-            <td >{{item.Number}}</td>
-            <td >{{item.Name}}</td>  
+            <td >{{item.itemNumber}}</td>
+            <td >{{item.name}}</td>  
             
-            <td >{{item.Price}}</td>  
+            <td >{{item.price}}</td>  
             
-            <td >{{item.Quantity}} </td>
+            <td >{{item.quantity}} </td>
                 <!--<button class="btn" (click)="incrementQuantityByOne($event); false"  >increment</button>
                 <button class="btn" (click)="decrementQuantityByOne($event); false" >decrement</button>
                     -->

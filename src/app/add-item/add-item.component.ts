@@ -2,7 +2,7 @@ import { ItemsInterface } from './../ItemsInterface';
 import { ItemListServicesService } from './../item-list-services.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { Item} from '../item';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,56 +11,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  obj : {};
-  Num : number;
-  Quantity : number;
-  Price : number;
-  Name : string;
-  itemNumber : number;
-  private item : ItemsInterface;
+  
+  num : number;
+
+  item : Item;
   flag : boolean=false;
-  //flag1 : boolean=true;
+ 
 
   constructor(private itemListServicesService: ItemListServicesService,private router : Router,private route : ActivatedRoute) { }
   ngOnInit() {
     this.flag=false;
-    this.itemNumber=parseInt(this.route.snapshot.paramMap.get('id'));
-    console.log("flag"+this.flag+"item number"+this.itemNumber);
-      if(!isNaN(this.itemNumber)){
-//        console.log("flag"+this.flag+"item number"+this.itemNumber);
-
+    this.item=new Item();
+    this.num=parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log(this.num);
+      if(!isNaN(this.num)){
+        this.item.itemNumber=this.num;
         this.loadData();
         this.flag=true;
-        //this.flag1=false;
+        
+        console.log(this.flag);
+        console.log(this.item.itemNumber);
       }
   }
   loadData(){
-    this.item=this.itemListServicesService.getItemDetails(this.itemNumber);
-     
-      this.Num = this.item.Number,
-      this.Name = this.item.Name,
-      this.Price = this.item.Price, 
-      this.Quantity = this.item.Quantity ;
-    
+    this.item=this.itemListServicesService.getItemDetails(this.item.itemNumber);
   }
 
-  addItem(){  
-      this.obj ={ Number : this.Num,
-                  Name : this.Name,
-                  Price : this.Price, 
-                  Quantity : this.Quantity };
-      
-      this.itemListServicesService.addItemToList(this.obj);
+  addItem(){      
+    console.log(this.item);
+      this.itemListServicesService.addItemToList(this.item);
+     
       this.router.navigateByUrl('itemlist');
   }
 
   updateItem(){
-    this.obj ={ Number : this.Num,
-      Name : this.Name,
-      Price : this.Price, 
-      Quantity : this.Quantity };
-    console.log(this.obj);
-      this.itemListServicesService.updateItem(this.obj);
+      this.itemListServicesService.updateItem(this.item);
       this.router.navigateByUrl('itemlist');
   }
 }

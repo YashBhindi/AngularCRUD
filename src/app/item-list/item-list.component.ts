@@ -2,6 +2,7 @@ import { ItemListServicesService } from './../item-list-services.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Item } from '../item';
 
 @Component({ 
   selector: 'item-list',
@@ -9,7 +10,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-  public items=[];
+ // public items=[];
+  public items: Item[] ;
   
   constructor(private itemListServicesService : ItemListServicesService , 
     private router : Router )  { }
@@ -17,6 +19,7 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
     
     this.itemListServicesService.getItems().subscribe(data => this.items = data);
+    
   }
 
   key: string = 'name'; //set default
@@ -35,7 +38,7 @@ export class ItemListComponent implements OnInit {
   }
 
   getItemDetail(item){
-    this.router.navigate(['/itemlist',item.Number]);
+    this.router.navigate(['/itemlist',item.itemNumber]);
   }
   incrementQuantityByOne($event){
     $event.stopPropagation()
@@ -51,7 +54,7 @@ export class ItemListComponent implements OnInit {
   }
   updateItem($event,item){
     $event.stopPropagation();
-    this.router.navigate(['/itemlist/update',item.Number]);
+    this.router.navigate(['/itemlist/update',item.itemNumber]);
 
   } 
 
