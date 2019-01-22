@@ -37,7 +37,7 @@ export class AddItemComponent implements OnInit {
     this.item=this.itemListServicesService.getItemDetails(this.item.itemNumber);
   }
 
-  addItem(){      
+  onSubmit(){      
     console.log(this.item);
       this.itemListServicesService.addItemToList(this.item);
      

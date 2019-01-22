@@ -21,14 +21,13 @@ export class SignUpComponent implements OnInit {
       lastName : ['' , [Validators.required , furbiddenNameValidator(/ /)]],
       gender : ['' , Validators.required],
       postion : ['' , Validators.required],
-      mobile : [''],
+      mobile : ['',[Validators.required,Validators.pattern(/[1-9][0-9]{5}/)]],
       emailId : [''],
       password : ['',Validators.required],
       confirmPwd : ['' , Validators.required],
       address : this.fb.group({
-        cityName : ['' , Validators.required],
-        pinCode : ['']
-  
+        cityName : ['' ],
+        pinCode : ['',[Validators.required,Validators.pattern(/[1-9][0-9]{5}/)]]
       }),
       subscribe : [false],
       alternativeMobile : this.fb.array([])
@@ -74,39 +73,30 @@ export class SignUpComponent implements OnInit {
   get getFirstName(){
     return this.registrationForm.get('firstName');
   }
-
   get getLastName(){
     return this.registrationForm.get('lastName');
   }
-
   get getGender(){
     return this.registrationForm.get('gender');
   }
-
   get getPosition(){
     return this.registrationForm.get('position');
   }
-
   get getMobileNo(){
     return this.registrationForm.get('mobile');
   }
-
   get getEmail(){
     return this.registrationForm.get('emailId');
   }
-
   get getPassword(){
     return this.registrationForm.get('password');
   }
-
   get getConfirmPwd(){
     return this.registrationForm.get('confirmPwd');
   }
-
   get getCityName(){
     return this.registrationForm.get('cityName');
   }
-
   get getPinCode(){
     return this.registrationForm.get('pinCode');
   }

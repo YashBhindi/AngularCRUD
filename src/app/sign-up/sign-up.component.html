@@ -1,94 +1,102 @@
 <div class="container-fluid">
-  <h2>Register Form</h2>
-
-
-
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    
-  {{registrationForm.value | json}}
+    <h2>Register Form</h2>
   
-    <div class="form-group">
-      <label for="fname">First Name:</label>
-      <input type="text"  formControlName="firstName" id="fname" class="form-control" >
-      <div *ngIf="f.get('firstName').invalid && f.get('firstName').touched">
-        <small  *ngIf="f.get('firstName').errors?.required" class="text-danger">First Name is reqired</small>
-        <small *ngIf="f.get('firstName').errors?.furbiddenName" class="text-danger">Space is not allowed</small> 
-      </div>
+  
+  
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
+    {{registrationForm.value | json}}
     
-    </div>
-    <div class="form-group">
-        <label for="lname">Last Name:</label>
-        <input type="text" formControlName="lastName" id="lname" class="form-control" >
-        <div *ngIf="f.get('lastName').invalid && f.get('lastName').touched">
-            <small  *ngIf="f.get('lastName').errors?.required" class="text-danger">Last Name is reqired</small>
-            <small *ngIf="f.get('lastName').errors?.furbiddenName" class="text-danger">Space is not allowed</small> 
+      <div class="form-group">
+        <label for="fname">First Name:</label>
+        <input type="text"  formControlName="firstName" id="fname" class="form-control" >
+        <div *ngIf="f.get('firstName').invalid && f.get('firstName').touched">
+          <small  *ngIf="f.get('firstName').errors?.required" class="text-danger">First Name is reqired</small>
+          <small *ngIf="f.get('firstName').errors?.furbiddenName" class="text-danger">Space is not allowed</small> 
+        </div>
+      
+      </div>
+      <div class="form-group">
+          <label for="lname">Last Name:</label>
+          <input type="text" formControlName="lastName" id="lname" class="form-control" >
+          <div *ngIf="f.get('lastName').invalid && f.get('lastName').touched">
+              <small  *ngIf="f.get('lastName').errors?.required" class="text-danger">Last Name is reqired</small>
+              <small *ngIf="f.get('lastName').errors?.furbiddenName" class="text-danger">Space is not allowed</small> 
+            </div>
+      </div>
+      <div class="mb-3">
+        <label>Select Gender</label>
+        <div class="form-check">
+            <label class="form-check-label">Male</label>
+          <input class="form-check-input" formControlName="gender" type="radio" name="gender" value="male"  >
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">Female</label>
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="female">
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <select class="custom-select" formControlName="postion">
+          <option selected>I'm..</option>
+          <option *ngFor="let designation of postions">{{ designation }}</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+  
+        <label for="mo">Mobile No.:</label>
+        <input type="number" id="mo" formControlName="mobile" class="form-control" >
+        <div *ngIf="f.get('mobile').invalid && f.get('mobile').touched">
+            <small  *ngIf="f.get('mobile').errors?.required" class="text-danger">Mobile number is reqired</small>
+            <small *ngIf="f.get('mobile').errors?.pattern" class="text-danger">Enter valid mobile number</small> 
           </div>
-    </div>
-    <div class="mb-3">
-      <label>Select Gender</label>
-      <div class="form-check">
-          <label class="form-check-label">Male</label>
-        <input class="form-check-input" formControlName="gender" type="radio" name="gender" value="male"  >
+        <button type="button" class="btn btn-secondary btn-sm m-2" (click)="addAlternativeMobile()">Add Mobile no.</button>
+        <div formArrayName="alternativeMo" *ngFor="let mo of alternativeMo.controls; let i=index">
+            <input type="text" class="form-control m-1" [formControlName]="i">
+        </div>
       </div>
-      <div class="form-check">
-          <label class="form-check-label">Female</label>
-          <input class="form-check-input" type="radio" formControlName="gender" name="gender" value="female">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <select class="custom-select" formControlName="postion">
-        <option selected>I'm..</option>
-        <option *ngFor="let designation of postions">{{ designation }}</option>
-      </select>
-    </div>
-    
-    <div class="form-group">
-
-      <label for="mo">Mobile No.:</label>
-      <input type="number" id="mo" formControlName="mobile" class="form-control" >
-      <button type="button" class="btn btn-secondary btn-sm m-2" (click)="addAlternativeMobile()">Add Mobile no.</button>
-      <div formArrayName="alternativeMo" *ngFor="let mo of alternativeMo.controls; let i=index">
-          <input type="text" class="form-control m-1" [formControlName]="i">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email address:</label>
-      <input type="email" id="email" formControlName="emailId" class="form-control" >
-      <small  *ngIf="f.get('emailId').errors?.required" class="text-danger">Email is reqired</small>
-    </div>
-    <div  class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" id="pwd" formControlName="password" class="form-control" >
-      <div *ngIf="f.get('password').invalid && f.get('password').touched">
-          <small  *ngIf="f.get('password').errors?.required" class="text-danger">Password is reqired</small>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="cpwd">Confirm Password:</label>
-      <input type="password" id="cpwd" formControlName="confirmPwd" class="form-control" >
-      <small *ngIf="f.errors?.missMatch" class="text-danger">Password do not match</small> 
-       
-    </div>
-    <div formGroupName="address" class="form-group">
-      <label>Address:</label>
+  
       <div class="form-group">
-        <label for="city">City:</label>
-        <input type="text" id="city" formControlName="cityName" class="form-control" >
+        <label for="email">Email address:</label>
+        <input type="email" id="email" formControlName="emailId" class="form-control" >
+        <small  *ngIf="f.get('emailId').errors?.required" class="text-danger">Email is reqired</small>
+      </div>
+      <div  class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" formControlName="password" class="form-control" >
+        <div *ngIf="f.get('password').invalid && f.get('password').touched">
+            <small  *ngIf="f.get('password').errors?.required" class="text-danger">Password is reqired</small>
+        </div>
       </div>
       <div class="form-group">
-        <label for="pin">Pincode:</label>
-        <input type="number" formControlName="pinCode" id="pin" class="form-control" >
+        <label for="cpwd">Confirm Password:</label>
+        <input type="password" id="cpwd" formControlName="confirmPwd" class="form-control" >
+        <small *ngIf="f.errors?.missMatch" class="text-danger">Password do not match</small> 
+         
       </div>
-        
-    </div>
-    
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" formControlName="subscribe"> 
-       <label class="form-check-label">Subscribe</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form> 
-
-</div>
+      <div formGroupName="address" class="form-group">
+        <label>Address:</label>
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" id="city" formControlName="cityName" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label for="pin">Pincode:</label>
+          <input type="number" formControlName="pinCode" id="pin" class="form-control" >
+          <div *ngIf="f.get('address.pinCode').invalid && f.get('address.pinCode').touched">
+              <small  *ngIf="f.get('address.pinCode').errors?.required" class="text-danger">Pincode is reqired</small>
+              <small *ngIf="f.get('address.pinCode').errors?.pattern" class="text-danger">Enter valid pincode</small> 
+            </div>
+        </div>
+          
+      </div>
+      
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" formControlName="subscribe"> 
+         <label class="form-check-label">Subscribe</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form> 
+  
+  </div>

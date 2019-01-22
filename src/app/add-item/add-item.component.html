@@ -13,32 +13,45 @@
 <div class="container-fluid">
 <div class="container">
 
-  <form #itemForm="ngForm" class="form-horizontal">
+  <form #itemForm="ngForm" novalidate (ngSubmit)="onSubmit()" class="form-horizontal">
       <div class="form-group">
           <label class="control-label col-sm-2" for="nu">Number:</label>
           
             <label *ngIf="flag==true" class="control-label col-sm-2" >{{item.itemNumber}}</label>
-            <input *ngIf="!flag" type="number" name="nu" id="nu" [(ngModel)]="item.itemNumber" class="form-control" 
+            <div *ngIf="!flag">
+                <input  type="number" name="nu" id="nu" [(ngModel)]="item.itemNumber" class="form-control" 
                  required #num="ngModel" [class.is-invalid]="num.invalid && num.touched" placeholder="Enter Item Number" >
-      </div>
+              <small *ngIf="!flag" class="text-danger" [class.d-none]="num.valid || num.untouched ">Number is required</small>
+            </div>
+            
+        </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="Name">Item Name:</label>
       <div class="col-sm-10">
-        <input type="text" [(ngModel)]="item.name" class="form-control" id="Name" placeholder="Enter Item Name" name="Name" >
+        <input type="text" [(ngModel)]="item.name" class="form-control" id="Name" 
+        required #nm="ngModel" [class.is-invalid]="nm.invalid && nm.touched"
+        placeholder="Enter Item Name" name="Name" >
+        <small class="text-danger" [class.d-none]="nm.valid || nm.untouched ">Name is required</small>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="qu">Quantity:</label>
       <div class="col-sm-10">          
         <input type="number" [(ngModel)]="item.quantity" class="form-control" id="qu" 
-              placeholder="Enter Quantity" name="qu">
+          required #qun="ngModel" [class.is-invalid]="qun.invalid && qun.touched"    
+          placeholder="Enter Quantity" name="qu">
+          <small class="text-danger" [class.d-none]="qun.valid || qun.untouched ">Quantity is required</small>
+
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pr">Price:</label>
       <div class="col-sm-10">          
         <input type="number" [(ngModel)]="item.price" class="form-control" id="pr" 
-              placeholder="Enter Price" name="pr">
+          required #pc="ngModel" [class.is-invalid]="pc.invalid && pc.touched"      
+          placeholder="Enter Price" name="pr">
+          <small class="text-danger" [class.d-none]="pc.valid || pc.untouched ">Price is required</small>
+
       </div>
     </div>
     <div class="form-group">        
@@ -47,7 +60,7 @@
           <button  class="btn btn-default" (click)="updateItem()">Update</button>
       </div> 
       <div *ngIf="flag==false" class="col-sm-offset-2 col-sm-10">
-            <button  class="btn btn-default" (click)="addItem()">Submit</button>
+            <button  type="submit" class="btn btn-default" >Submit</button>
       </div>
     </div>
   </form>
