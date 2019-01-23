@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AddItemComponent } from './add-item/add-item.component';
 import {ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponentComponent } from './item-detail-component/item-detail-component.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : 'itemlist', component : ItemListComponent},
   {path : 'additem', component : AddItemComponent},
   {path : 'signup', component : SignUpComponent},
+  {path : 'signin' , component : SignInComponent},
  {path : 'itemlist/update/:id' , component : AddItemComponent},
   {path : 'itemlist/:id' , component : ItemDetailComponentComponent},
   {path : 'myprofile' , component : MyProfileComponent},

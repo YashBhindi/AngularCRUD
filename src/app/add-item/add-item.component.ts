@@ -28,7 +28,6 @@ export class AddItemComponent implements OnInit {
         this.item.itemNumber=this.num;
         this.loadData();
         this.flag=true;
-        
         console.log(this.flag);
         console.log(this.item.itemNumber);
       }
@@ -40,7 +39,6 @@ export class AddItemComponent implements OnInit {
   onSubmit(){      
     console.log(this.item);
       this.itemListServicesService.addItemToList(this.item);
-     
       this.router.navigateByUrl('itemlist');
   }
 
