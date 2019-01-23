@@ -24,6 +24,7 @@ export class UserAuthenticationService {
      "123",  
       this.subGroup,
      true );
+
     private users: User[] =[this.user];
 
     
@@ -80,6 +81,8 @@ export class UserAuthenticationService {
                 alert('SUCCESS!! :-)');
                 this.router.navigateByUrl('/itemlist')
             }
+            alert('FAILED!! :-)');
+            
         }
     }
     

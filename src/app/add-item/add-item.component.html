@@ -66,7 +66,7 @@
     <div class="form-group">        
       
       <div *ngIf="flag==true" class="col-sm-offset-2 col-sm-10">
-          <button  class="btn btn-info my-4 btn-block" id="um" data-toggle="modal" (click)="updateItem()"  >Update</button>
+          <button  [disabled]="itemForm.invalid" class="btn btn-info my-4 btn-block" id="um" data-toggle="modal" (click)="updateItem()"  >Update</button>
       
           <!-- Model for update-->
 
@@ -74,7 +74,7 @@
   
     </div> 
     <div *ngIf="flag==false" class="col-sm-offset-2 col-sm-10">
-            <button  type="submit" id="sm" data-toggle="modal"  class="btn btn-info my-4 btn-block"  >Submit</button>
+            <button [disabled]="itemForm.invalid" type="submit" id="sm" data-toggle="modal"  class="btn btn-info my-4 btn-block"  >Submit</button>
      <!---->
             <!-- Model for submit-->
 
