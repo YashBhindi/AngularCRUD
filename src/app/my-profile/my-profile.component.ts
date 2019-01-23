@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionStorageService} from 'ng2-webstorage';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor( private sessionObj :SessionStorageService) { }
 
   ngOnInit() {
+    this.sessionObj.store('key','val');
+    
   }
+
+  
 
 }

@@ -1,3 +1,4 @@
+import { SessionStorageService } from 'ng2-webstorage';
 import { ItemListServicesService } from './../item-list-services.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,10 +15,9 @@ export class ItemListComponent implements OnInit {
   public items: Item[] ;
   
   constructor(private itemListServicesService : ItemListServicesService , 
-    private router : Router )  { }
+    private router : Router ,private sessionObj :SessionStorageService)  { }
 
   ngOnInit() {
-    
     this.itemListServicesService.getItems().subscribe(data => this.items = data);
     
   }

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { compTest } from './comp1/compTest.component';
 import { FormsModule, ReactiveFormsModule ,FormBuilder,Validator ,FormArray} from '@angular/forms';
 import { PanelComponent } from './panel/panel.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemListServicesService} from './item-list-services.service';
@@ -15,21 +14,23 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { ItemDetailComponentComponent } from './item-detail-component/item-detail-component.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-
+import { Ng2Webstorage } from 'ng2-webstorage'
 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
-import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SignInComponent } from './sign-in/sign-in.component'; //importing the module
 @NgModule({
   declarations: [
     AppComponent ,
     compTest,
     PanelComponent,
-    ContactFormComponent,
+    
     routingComponents,
     PageNotFoundComponentComponent,
     ItemDetailComponentComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    SignInComponent
     
   ],
   imports: [
@@ -40,7 +41,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'; //importing the module
     ReactiveFormsModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2Webstorage
   ],
   providers: [ ItemListServicesService ],
   bootstrap: [AppComponent]

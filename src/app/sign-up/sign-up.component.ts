@@ -1,27 +1,40 @@
+import { SubGroup } from './../SubGroup';
+import { User } from './../User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
-import { furbiddenNameValidator} from '../shared/nameValidators'
+import { furbiddenNameValidator} from '../shared/nameValidators';
 import { passwordValidator } from '../shared/passwordValidators';
+import { UserAuthenticationService } from '../user-authentication.service';
+import { Router } from '@angular/router';
+
+
+
+
 @Component({
   selector: 'sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 
+
+
 export class SignUpComponent implements OnInit {
   registrationForm : FormGroup;
-  constructor(private fb : FormBuilder) { }
   submitted = false;
   postions=["student","employee"];
+  user : User;
+  subGroup : SubGroup;
   
-  
+  constructor(private fb : FormBuilder,private userAuthObj: UserAuthenticationService,private router : Router) { }
+ 
+
   ngOnInit() {
     this.registrationForm = this.fb.group({
       firstName : ['' , [Validators.required , furbiddenNameValidator(/ /)]],
       lastName : ['' , [Validators.required , furbiddenNameValidator(/ /)]],
       gender : ['' , Validators.required],
       postion : ['' , Validators.required],
-      mobile : ['',[Validators.required,Validators.pattern('^[1-9][0-9]{5}$')]],
+      mobile : ['',[Validators.required,Validators.pattern('^[0-9]{10}$')]],
       emailId : [''],
       password : ['',Validators.required],
       confirmPwd : ['' , Validators.required],
@@ -38,9 +51,11 @@ export class SignUpComponent implements OnInit {
         const email = this.registrationForm.get('emailId');
         if(checkedValue){
           console.log("if")
-          email.setValidators([Validators.required , Validators.pattern('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')]);
-        //  email.setValidators ();
-          
+          email.setValidators(Validators.required );
+            
+            //  email.setValidators ();
+            // Validators.pattern('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')]);
+
         }  
         else{
           email.clearValidators();
@@ -61,14 +76,31 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("submit");
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.registrationForm.invalid) {
         return;
     }
+    this.subGroup =new SubGroup(this.f.get('address.cityName').value,
+    this.f.get('address.pinCode').value);
+    var temp=this.registrationForm;
+    this.user=new User(temp.controls['firstName'].value,
+      temp.controls['lastName'].value,
+      temp.controls['gender'].value,
+      temp.controls['postion'].value,
+      temp.controls['mobile'].value,
+      temp.controls['emailId'].value,
+      temp.controls['password'].value,
+      temp.controls['confirmPwd'].value,
+      this.subGroup,
+      temp.controls['subscribe'].value);
 
-    alert('SUCCESS!! :-)')
+      this.userAuthObj.addUserToList(this.user);
+    
+    alert('SUCCESS!! :-)');
+   
   }
   
   
