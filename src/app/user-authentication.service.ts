@@ -13,24 +13,7 @@ import { User} from './User';
 export class UserAuthenticationService {
     private _url : string = "/assets/data/user-list.json";
     private subGroup : SubGroup=new SubGroup("jam","123456"); 
-    //private subGroup1 : SubGroup={}
-     // "cityName" : "jamnagar" 
-     // "pinCode" : "388123"
-    /* "firstName" : "yas", 
-     "lastName" : "soni",
-     "gender" : "male",
-     "postion" : "student",
-     "mobile" : "300123",
-        "emailId" : "yash@gmail.com",
-     "password" : "123",
-     "confirmPwd" : "123",  
- 
-     "address" : { "cityName" : "jamnagar" ,"pinCode" : "388123"},  
- 
-     "subscribe" : true
-   // }
-
-   **/
+   
     user=new User("yas", 
     "soni",
      "male",
@@ -84,13 +67,18 @@ export class UserAuthenticationService {
 
 
     authenticateUser(mobile,password){
-        
-        let userMobile = this.users.find(x => x.mobile === mobile);
+        console.log(mobile);
+        console.log(password);
+        let userMobile = this.users.findIndex(x => x.mobile === mobile);
+        console.log(userMobile);
         if(userMobile !== undefined) {
-            let userPassword = this.users.find(x => x.password === password);
+            let userPassword = this.users.findIndex(x => x.password === password);
+            console.log(userPassword);
             if(userPassword !== undefined){
-                this.sessionObj.store("username", mobile);
+                this.sessionObj.store("username", this.users[userPassword].firstName);
                 //  this.router.navigate(['itemlist',userMobile]);
+                alert('SUCCESS!! :-)');
+                this.router.navigateByUrl('/itemlist')
             }
         }
     }
