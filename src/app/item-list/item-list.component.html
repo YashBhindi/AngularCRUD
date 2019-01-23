@@ -1,12 +1,31 @@
-<nav class="navbar">
-        <label>Search:</label><input class="form-control" type="text" name="search" [(ngModel)]="filter">      
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </nav>
-<table class="table table-hover">
-    <thead>
+
+<div class="jumbotron jumbotron-fluid card">
+    <h1>Shpping Cart</h1>
+    <p>Please Welcome..... </p>
+</div>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item ">
+            <label class="nav-link" >Search:</label>
+        </li>
+        <li class="nav-item">
+            <input class="form-control nav-link" type="text" name="search" [(ngModel)]="filter">      
+          </li>
+        <li class="nav-item navbar-toggler-right">
+            <pagination-controls class="pagination " (pageChange)="p = $event"></pagination-controls>
+        </li>
+          
+    </ul>
+</nav>
+<div  class="card">
+    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  routerLink="/additem" >Add Item</button>
+</div>
+
+<table class="table table-hover ">
+    <thead class="thead-light">
       <tr>
         <th (click)="sort('itemNumber')"scope="col">#
-                <span class="glyphicon sort-icon" *ngIf="key =='itemNumber'" 
+                <span class="glyphicon sort-icon " *ngIf="key =='itemNumber'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
         <th (click)="sort('name')" scope="col">Name
@@ -14,7 +33,7 @@
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
         <th (click)="sort('price')" scope="col">Price
-                <span class="glyphicon sort-icon" *ngIf="key =='price'" 
+                <span class="glyphicon sort-icon " *ngIf="key =='price'" 
                 [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
         </th>
         <th (click)="sort('quantity')" scope="col">Quantity
@@ -81,4 +100,4 @@
   <br>
   <br>
   
-  <button class="btn btn-primary"  routerLink="/additem" >Add Item</button>
+  

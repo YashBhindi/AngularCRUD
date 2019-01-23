@@ -11,17 +11,19 @@
 </head>
 <body>
 <div class="container-fluid">
-<div class="container">
+<div class="container card">
 
-  <form #itemForm="ngForm" novalidate (ngSubmit)="onSubmit()" class="form-horizontal">
+  <form #itemForm="ngForm" style="color: #757575;" novalidate (ngSubmit)="onSubmit()" class="form-horizontal text-center">
       <div class="form-group">
-          <label class="control-label col-sm-2" for="nu">Number:</label>
           
-            <label *ngIf="flag==true" class="control-label col-sm-2" >{{item.itemNumber}}</label>
-            <div *ngIf="!flag">
+            <label class="control-label col-sm-2" for="nu">Number:</label>
+            <div>
+                <label *ngIf="flag==true" class="control-label col-sm-2" >{{item.itemNumber}}</label>
+            </div>
+            <div *ngIf="!flag" class="card">
                 <input  type="number" name="nu" id="nu" [(ngModel)]="item.itemNumber" class="form-control" 
                  required #num="ngModel" [class.is-invalid]="num.invalid && num.touched" placeholder="Enter Item Number" >
-              <small *ngIf="!flag" class="text-danger" [class.d-none]="num.valid || num.untouched ">Number is required</small>
+                 <small *ngIf="!flag" class="text-danger" [class.d-none]="num.valid || num.untouched ">Number is required</small>
             </div>
             
         </div>
@@ -40,7 +42,8 @@
         <input type="number" [(ngModel)]="item.quantity" class="form-control" id="qu" 
           required #qun="ngModel" [class.is-invalid]="qun.invalid && qun.touched"    
           placeholder="Enter Quantity" name="qu">
-          <small class="text-danger" [class.d-none]="qun.valid || qun.untouched ">Quantity is required</small>
+          <small class="flag : boolean=false;
+          text-danger" [class.d-none]="qun.valid || qun.untouched ">Quantity is required</small>
 
       </div>
     </div>
@@ -57,7 +60,7 @@
     <div class="form-group">        
       
       <div *ngIf="flag==true" class="col-sm-offset-2 col-sm-10">
-          <button  class="btn btn-primary" id="um" data-toggle="modal" (click)="updateItem()"  >Update</button>
+          <button  class="btn btn-info my-4 btn-block" id="um" data-toggle="modal" (click)="updateItem()"  >Update</button>
       
           <!-- Model for update-->
 
@@ -65,7 +68,7 @@
   
     </div> 
     <div *ngIf="flag==false" class="col-sm-offset-2 col-sm-10">
-            <button  type="submit" id="sm" data-toggle="modal"  class="btn btn-primary"  >Submit</button>
+            <button  type="submit" id="sm" data-toggle="modal"  class="btn btn-info my-4 btn-block"  >Submit</button>
      <!---->
             <!-- Model for submit-->
 
