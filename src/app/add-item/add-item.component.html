@@ -4,7 +4,7 @@
 <head>
   <title>Add Item</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -12,14 +12,13 @@
 <body>
     
 
-<div class="container-fluid">
-<div class="container card">
+<div>
     <h5 class="card-header info-color white-text text-center py-4" style="color: #757575;" >
         <strong *ngIf="flag==false">Add Item </strong>
         <strong *ngIf="flag==true">Update Item </strong>
         <br>
     </h5>
-  <form #itemForm="ngForm" style="color: #757575;" novalidate (ngSubmit)="onSubmit()" class="form-horizontal text-center">
+  <form #itemForm="ngForm" style="color: #757575;" novalidate (ngSubmit)="onSubmit()" >
       <div class="form-group" >
           <br>
             <label class="control-label col-sm-2" for="nu">Number:</label>
@@ -77,19 +76,10 @@
             <button [disabled]="itemForm.invalid" type="submit" id="sm" data-toggle="modal"  class="btn btn-info my-4 btn-block"  >Submit</button>
      <!---->
             <!-- Model for submit-->
-
-     
-      
-      
-
       </div>
     </div>
   </form>
-</div>
-</div>
-
-
-  
+</div>  
 </body>
 </html>
 

@@ -11,7 +11,7 @@ export class MyProfileComponent implements OnInit {
   constructor( private sessionObj :SessionStorageService) { }
 
   ngOnInit() {
-    this.sessionObj.store('key','val');
+    //this.sessionObj.store('key','val');
     
   }
 

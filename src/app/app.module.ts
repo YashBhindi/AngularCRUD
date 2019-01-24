@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule , routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { compTest } from './comp1/compTest.component';
@@ -20,17 +19,21 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { Ng2OrderModule } from 'ng2-order-pipe'; //importing the module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SignInComponent } from './sign-in/sign-in.component'; //importing the module
+import { AuthGuardGuard} from './auth-guard.guard';
+import { HomeComponent } from './home/home.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component'
 @NgModule({
   declarations: [
     AppComponent ,
     compTest,
     PanelComponent,
-    
     routingComponents,
     PageNotFoundComponentComponent,
     ItemDetailComponentComponent,
     MyProfileComponent,
-    SignInComponent
+    SignInComponent,
+    HomeComponent,
+    NavBarComponent
     
   ],
   imports: [
@@ -44,7 +47,7 @@ import { SignInComponent } from './sign-in/sign-in.component'; //importing the m
     NgxPaginationModule,
     Ng2Webstorage
   ],
-  providers: [ ItemListServicesService ],
+  providers: [ ItemListServicesService , AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

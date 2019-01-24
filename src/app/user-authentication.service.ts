@@ -14,7 +14,7 @@ export class UserAuthenticationService {
     private _url : string = "/assets/data/user-list.json";
     private subGroup : SubGroup=new SubGroup("jam","123456"); 
    
-    user=new User("yas", 
+    user=new User("yash", 
     "soni",
      "male",
      "student",
@@ -66,7 +66,6 @@ export class UserAuthenticationService {
       this.users.splice(index,1,user);
     }
 
-
     authenticateUser(mobile,password){
         console.log(mobile);
         console.log(password);
@@ -80,10 +79,18 @@ export class UserAuthenticationService {
                 //  this.router.navigate(['itemlist',userMobile]);
                 alert('SUCCESS!! :-)');
                 this.router.navigateByUrl('/itemlist')
-            }
-            alert('FAILED!! :-)');
-            
+            }           
         }
+        else
+        alert('FAILED!! :-)');
     }
+    getToken(): boolean{
+        return  (!!this.sessionObj.retrieve("username"));
+    }
+
+    deleteSession(){
+        this.sessionObj.clear;
+    }
+
     
 }

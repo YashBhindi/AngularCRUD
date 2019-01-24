@@ -13,12 +13,12 @@ import { Item } from '../item';
 export class ItemListComponent implements OnInit {
  // public items=[];
   public items: Item[] ;
-  
+  paramsSubscription
   constructor(private itemListServicesService : ItemListServicesService , 
     private router : Router ,private sessionObj :SessionStorageService)  { }
 
   ngOnInit() {
-    this.itemListServicesService.getItems().subscribe(data => this.items = data);
+    this.paramsSubscription=  this.itemListServicesService.getItems().subscribe(data => this.items = data);
     
   }
 
@@ -59,5 +59,11 @@ export class ItemListComponent implements OnInit {
     this.router.navigate(['/itemlist/update',item.itemNumber]);
 
   } 
+
+
+  ngOnDestroy() {
+    // You should unsubscribe from each observable here
+    this.paramsSubscription.unsubscribe();
+  }
 
 }
