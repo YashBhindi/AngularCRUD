@@ -69,12 +69,13 @@ export class UserAuthenticationService {
     authenticateUser(mobile,password){
         console.log(mobile);
         console.log(password);
-        let userMobile = this.users.findIndex(x => x.mobile === mobile);
+        let userMobile = this.users.findIndex(x => x.mobile == mobile);
+        console.log(this.users);
         console.log(userMobile);
-        if(userMobile !== undefined) {
-            let userPassword = this.users.findIndex(x => x.password === password);
+        if(userMobile != -1) {
+            let userPassword = this.users.findIndex(x => x.password == password);
             console.log(userPassword);
-            if(userPassword !== undefined){
+            if(userPassword != -1){
                 this.sessionObj.store("username", this.users[userPassword].firstName);
                 //  this.router.navigate(['itemlist',userMobile]);
                 alert('SUCCESS!! :-)');
@@ -89,7 +90,7 @@ export class UserAuthenticationService {
     }
 
     deleteSession(){
-        this.sessionObj.clear;
+        this.sessionObj.clear();
     }
 
     

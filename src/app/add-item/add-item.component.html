@@ -32,10 +32,11 @@
             </div>
             
         </div>
+        <br>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="Name">Item Name:</label>
-      <div class="col-sm-10">
-        <input type="text" [(ngModel)]="item.name" class="form-control" id="Name" 
+      <label class="control-label col-sm-10" for="Name">Item Name:</label>
+      <div >
+        <input type="text" [(ngModel)]="item.name" class="form-control " id="Name" 
         required #nm="ngModel" [class.is-invalid]="nm.invalid && nm.touched"
         placeholder="Enter Item Name" name="Name" >
         <small class="text-danger" [class.d-none]="nm.valid || nm.untouched ">Name is required</small>
